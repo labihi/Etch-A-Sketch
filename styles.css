@@ -1,0 +1,52 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.app-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.left-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+}
+
+.grid-column{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: 0%;
+    flex: 1 1 auto;
+}
+
+.grid-element{
+    height: auto;
+    width: auto;
+    flex: 1 1 auto;
+    border: 2px solid black;
+}
+
+.colored{
+    background-color: yellow;
+}
+
+.grid-element:hover{
+    background-color: aquamarine;
+}
+

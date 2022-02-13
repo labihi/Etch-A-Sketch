@@ -25,6 +25,8 @@
     flex-direction: column;
     width: 500px;
     height: 500px;
+    border: 2px solid black;
+    cursor: none;
 }
 
 .grid-column{
@@ -39,14 +41,6 @@
     height: auto;
     width: auto;
     flex: 1 1 auto;
-    border: 2px solid black;
 }
 
-.colored{
-    background-color: yellow;
-}
-
-.grid-element:hover{
-    background-color: aquamarine;
-}
 

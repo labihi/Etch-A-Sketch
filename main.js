@@ -9,9 +9,21 @@ function createGrid(number){
             const gridElement = document.createElement("div");
             gridElement.classList.add("grid-element");
             gridColumn.appendChild(gridElement);
+            
+            gridElement.addEventListener("mouseenter",changeColor);
+            gridElement.addEventListener("mouseleave",changeColor);
+            gridElement.addEventListener("mousedown",changeColor);
         }
     }
 }
 
-createGrid(8)
+function changeColor(evt){
+
+    if(evt.type === "mousedown"){
+        this.style.backgroundColor = "yellow";
+    }
+}
+
+
+createGrid(16)
 

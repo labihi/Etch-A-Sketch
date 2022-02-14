@@ -16,14 +16,16 @@
             <div class="app-container">
                 <div class="left-container">
                     <div class="color-picker-container">
-                        <input type="color">
-                        <input type="color">
+                        <input type="color" id="pen-color">
+                        <input type="color" id="background-color">
                     </div>
                     <button>Pen</button>
-                    <button>Eraser</button>
+                    <button id="eraser-button">Eraser</button>
+                    <button id="clear-button">Clear Canvas</button>
+                    <button id="fill-button">Fill Canvas</button>
                     <div>
                         <input type="range" min="1" max="64" value="8" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
+                        <p id="demo"></p>
                     </div>
                 </div>
                 <div class="grid-container">

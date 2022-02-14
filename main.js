@@ -1,3 +1,5 @@
+//VARIOUS GETTED DOM ELEMENTS
+//#region getted dom elements
 const gridContainer = document.getElementsByClassName("grid-container")[0]; //Where the grid should be created inside
 const clearButton = document.getElementById("clear-button");
 const fillButton = document.getElementById("fill-button");
@@ -5,10 +7,30 @@ const eraserButton = document.getElementById("eraser-button");
 const slider = document.getElementById("myRange");
 const penColorPicker = document.getElementById("pen-color");
 const backgroundColorPicker = document.getElementById("background-color");
+//#endregion
 let output = document.getElementById("demo");
 
 const DEFAULT_GRID_SIZE = 8;
 
+
+
+function changeColor(evt) {
+    if (evt.type === "mousedown") {
+        this.style.backgroundColor = penColorPicker.value;
+    }
+}
+
+
+output.innerHTML = `${slider.value} x ${slider.max}`;
+
+slider.oninput = function () {
+    output.innerHTML = `${this.value} x ${slider.max}`;
+    updateGrid();
+};
+
+
+//GRID MANAGEMENT FUNCTIONS
+//#region grid functions
 function createGrid(number) {
     for (let i = 0; i < number; i++) {
         const gridColumn = document.createElement("div");
@@ -26,20 +48,6 @@ function createGrid(number) {
     }
 }
 
-function changeColor(evt) {
-    if (evt.type === "mousedown") {
-        this.style.backgroundColor = penColorPicker.value;
-    }
-}
-
-
-output.innerHTML = `${slider.value} x ${slider.max}`;
-
-slider.oninput = function () {
-    output.innerHTML = `${this.value} x ${slider.max}`;
-    updateGrid();
-};
-
 function clearGrid(){
     gridContainer.innerHTML = "";
 }
@@ -54,6 +62,8 @@ function updateGrid(){
     clearGrid();
     createGrid(slider.value);
 }
+//#endregion
+
 
 clearButton.addEventListener("click", () => {
     resetGrid();

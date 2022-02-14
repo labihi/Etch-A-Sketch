@@ -18,6 +18,11 @@
     gap: 10px;
 }
 
+.color-picker-container{
+  display: flex;
+  justify-content: space-between;
+}
+
 .grid-container {
     display: flex;
     justify-content: start;

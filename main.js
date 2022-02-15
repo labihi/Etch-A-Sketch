@@ -34,10 +34,10 @@ function changeColor(evt) {
 }
 
 
-output.innerHTML = `${slider.value} x ${slider.max}`;
+output.innerHTML = `${slider.value} x ${slider.value}`;
 
 slider.oninput = function () {
-    output.innerHTML = `${this.value} x ${slider.max}`;
+    output.innerHTML = `${this.value} x ${slider.value}`;
     updateGrid();
 };
 

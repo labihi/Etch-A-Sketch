@@ -4,20 +4,24 @@ const gridContainer = document.getElementsByClassName("grid-container")[0]; //Wh
 const clearButton = document.getElementById("clear-button");
 const fillButton = document.getElementById("fill-button");
 const eraserButton = document.getElementById("eraser-button");
+const penButton = document.getElementById("pen-button");
 const slider = document.getElementById("myRange");
 const penColorPicker = document.getElementById("pen-color");
 const backgroundColorPicker = document.getElementById("background-color");
 //#endregion
 let output = document.getElementById("demo");
+let currentTool = "pen";
 
 const DEFAULT_GRID_SIZE = 8;
 
 
 
 function changeColor(evt) {
-    if (evt.type === "mousedown") {
+    if (evt.type === "mousedown" && currentTool == "pen") {
         this.style.backgroundColor = penColorPicker.value;
-    }
+    } else if(evt.type === "click" && currentTool == "eraser"){
+        this.style.backgroundColor = "transparent";
+    } 
 }
 
 
@@ -40,10 +44,6 @@ function createGrid(number) {
             const gridElement = document.createElement("div");
             gridElement.classList.add("grid-element");
             gridColumn.appendChild(gridElement);
-
-            gridElement.addEventListener("mouseenter", changeColor);
-            gridElement.addEventListener("mouseleave", changeColor);
-            gridElement.addEventListener("mousedown", changeColor);
         }
     }
 }
@@ -74,11 +74,19 @@ fillButton.addEventListener("click", () => {
 });
 
 eraserButton.addEventListener("click", () => {
+    currentTool = "eraser";
     const gridElement = document.getElementsByClassName("grid-element");
     for(let i = 0; i < gridElement.length; i++){
-        gridElement[i].addEventListener("click", () => {
-            gridElement[i].style.backgroundColor = "transparent";
-        });
+        gridElement[i].addEventListener("click", changeColor);
+    }
+});
+
+penButton.addEventListener("click", () => {
+    currentTool = "pen";
+    const gridElement = document.getElementsByClassName("grid-element");
+    for(element of gridElement){
+        element.addEventListener("mousedown", changeColor);
+        element.addEventListener("mouseenter",changeColor);
     }
 });
 

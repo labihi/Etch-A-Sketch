@@ -5,6 +5,7 @@ const clearButton = document.getElementById("clear-button");
 const fillButton = document.getElementById("fill-button");
 const eraserButton = document.getElementById("eraser-button");
 const penButton = document.getElementById("pen-button");
+const rainbowButton = document.getElementById("rainbow-button");
 const slider = document.getElementById("myRange");
 const penColorPicker = document.getElementById("pen-color");
 const backgroundColorPicker = document.getElementById("background-color");
@@ -26,6 +27,9 @@ function changeColor(evt) {
         this.style.backgroundColor = penColorPicker.value;
     } else if(currentTool == "eraser"){
         this.style.backgroundColor = "transparent";
+    } else if(currentTool == "rainbow"){
+        this.style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+
     }
 }
 
@@ -89,6 +93,15 @@ eraserButton.addEventListener("click", () => {
 
 penButton.addEventListener("click", () => {
     currentTool = "pen";
+    const gridElement = document.getElementsByClassName("grid-element");
+    for(element of gridElement){
+        element.addEventListener("mousedown", changeColor);
+        element.addEventListener("mouseover",changeColor);
+    }
+});
+
+rainbowButton.addEventListener("click", () => {
+    currentTool = "rainbow";
     const gridElement = document.getElementsByClassName("grid-element");
     for(element of gridElement){
         element.addEventListener("mousedown", changeColor);

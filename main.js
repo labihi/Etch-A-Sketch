@@ -12,16 +12,21 @@ const backgroundColorPicker = document.getElementById("background-color");
 let output = document.getElementById("demo");
 let currentTool = "pen";
 
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
 const DEFAULT_GRID_SIZE = 8;
 
 
 
 function changeColor(evt) {
-    if (evt.type === "mousedown" && currentTool == "pen") {
+    if (evt.type === 'mouseover' && !mouseDown) return
+    if (currentTool == "pen") {
         this.style.backgroundColor = penColorPicker.value;
-    } else if(evt.type === "click" && currentTool == "eraser"){
+    } else if(currentTool == "eraser"){
         this.style.backgroundColor = "transparent";
-    } 
+    }
 }
 
 
@@ -76,8 +81,9 @@ fillButton.addEventListener("click", () => {
 eraserButton.addEventListener("click", () => {
     currentTool = "eraser";
     const gridElement = document.getElementsByClassName("grid-element");
-    for(let i = 0; i < gridElement.length; i++){
-        gridElement[i].addEventListener("click", changeColor);
+    for(element of gridElement){
+        element.addEventListener("mousedown", changeColor);
+        element.addEventListener("mouseover",changeColor);
     }
 });
 
@@ -86,8 +92,14 @@ penButton.addEventListener("click", () => {
     const gridElement = document.getElementsByClassName("grid-element");
     for(element of gridElement){
         element.addEventListener("mousedown", changeColor);
-        element.addEventListener("mouseenter",changeColor);
+        element.addEventListener("mouseover",changeColor);
     }
 });
+
+
+//USED TO AUTO CLICK ON THE PEN TOOL ON PAGE RELOAD
+window.onload = () => {
+    document.getElementById("pen-button").click();
+};
 
 createGrid(DEFAULT_GRID_SIZE);

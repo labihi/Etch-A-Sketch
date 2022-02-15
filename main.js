@@ -64,7 +64,8 @@ function clearGrid(){
 function resetGrid(){
     clearGrid();
     createGrid(slider.value);
-    gridContainer.style.backgroundColor = "transparent";
+    gridContainer.style.backgroundColor = "#252736";
+    document.getElementById("pen-button").click();
 }
 
 function updateGrid(){
